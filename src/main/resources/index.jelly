@@ -1,0 +1,5 @@
+<?jelly escape-by-default='true'?>
+
+<div>
+  This plugin allows to copy and change views and jobs assigned to it in a bulk.
+</div>
