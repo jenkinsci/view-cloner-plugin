@@ -23,22 +23,6 @@ public class JobHandler {
 		this.jenkins = Jenkins.getInstance();
 		this.logger = listener.getLogger();
 	}
-
-	/**
-	 * Return assigned to the given view.
-	 * 
-	 * @param view
-	 *            View to get the jobs from. Accepted
-	 *            hudson.plugins.sectioned_view.SectionedView or
-	 *            hudson.model.ListView
-	 * @return Collection of jobs from the given view. null if view type is not
-	 *         supported OR no jobs were found.
-	 * @see <a href=
-	 *      "https://github.com/jenkinsci/sectioned-view-plugin/blob/master/src/main/java/hudson/plugins/sectioned_view/SectionedView.java">
-	 *      SectionedView</a> <br/>
-	 *      <a href="http://javadoc.jenkins-ci.org/hudson/model/ListView.html">
-	 *      ListView</a>
-	 */
 	
 	/**
 	 * Get config.xml of jobs in jobNames. 
