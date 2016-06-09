@@ -52,7 +52,6 @@ public class Utils {
 		HttpURLConnection conn = null;
 		try {
 			url = new URL(configPath);
-			System.out.println(url);
 		} catch (MalformedURLException e) {
 			throw new RuntimeException(e);
 		}

@@ -35,8 +35,9 @@ public class ViewHandler {
 	 *      Document</a>
 	 */
 	public Document getViewConfig(String url, String authStringEnc) {
+		logger.println("[Get view config]");
 		Document xml = Utils.getConfig(url, authStringEnc);
-		logger.println("[Get view config]\nSuccessfuly acquired view config from " + url + Utils.CONFIG_XML_PATH);
+		logger.println("Successfuly acquired view config from " + url + Utils.CONFIG_XML_PATH);
 		return xml;
 	}
 
@@ -48,9 +49,9 @@ public class ViewHandler {
 	 * @return Returns List of names that are visible in the view.
 	 */
 	public List<String> getNamesOfAssignedJobs(Document view) {
-		//List<String> jobNames = new ArrayList<String>();
+		logger.println("[Get assigned jobs]");
 		List<String> jobNames = getAssignedJobs(view.getChildNodes(), new ArrayList<String>());
-		logger.println("[Get assigned jobs]\nJobs that are present in the view");
+		logger.println("Jobs that are present in the view");
 		for(String name : jobNames){
 			logger.println(name);
 		}
@@ -110,7 +111,9 @@ public class ViewHandler {
 	 *            authentication
 	 */
 	public void createView(String url, String niewViewName, Document viewConfig, String authStringEnc) {
+		logger.println("[Create view]");
 		String config = Utils.docToString(viewConfig);
 		Utils.createView(url, niewViewName, config, authStringEnc);
+		logger.println("Creaeted view " + url + "/view/" + niewViewName);
 	}
 }

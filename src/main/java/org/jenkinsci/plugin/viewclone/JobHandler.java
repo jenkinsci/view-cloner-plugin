@@ -40,7 +40,7 @@ public class JobHandler {
 		logger.println("[Get job configs]");
 		for(String jobName : jobNames){
 			if(jenkins.getItem(jobName) != null){
-				url = "http://localhost:8080/jenkins/job/" + jobName;
+				url = jenkins.getRootUrl() + "job/" + jobName;
 				Document xml = Utils.getConfig(url, authStringEnc);
 				logger.println("Successfuly acquired job config from " + url + Utils.CONFIG_XML_PATH);
 				map.put(jobName, xml);
@@ -79,16 +79,18 @@ public class JobHandler {
 	 */
 	public void createJobs(Map<String, Document> jobNameConfig) {
 		Iterator<?> it = jobNameConfig.entrySet().iterator();
+		logger.println("[Create jobs]");
 		while (it.hasNext()) {
 			Map.Entry<String, Document> pair = (Entry<String, Document>) it.next();
 			if(jenkins.getItem(pair.getKey()) == null){
 				try {
 					jenkins.createProjectFromXML(pair.getKey(), Utils.docToStream(pair.getValue()));
+					logger.println("Job "+ pair.getKey() + " created");
 				} catch (IOException | TransformerFactoryConfigurationError e) {
 					throw new RuntimeException(e);
 				}
 			} else {
-				// job with such name exists
+				logger.println("Job with name " + pair.getKey() + " already exists");
 			}
 		}
 	}
