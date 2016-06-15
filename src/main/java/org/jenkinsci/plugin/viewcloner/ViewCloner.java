@@ -1,4 +1,4 @@
-package org.jenkinsci.plugin.viewclone;
+package org.jenkinsci.plugin.viewcloner;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -21,14 +21,14 @@ import hudson.tasks.Builder;
 import jenkins.tasks.SimpleBuildStep;
 import net.sf.json.JSONObject;
 
-public class ViewClone extends Builder implements SimpleBuildStep {
+public class ViewCloner extends Builder implements SimpleBuildStep {
 
 	private String replacePatternString;
 	private String url;
 	private String niewViewName;
 	
 	@DataBoundConstructor
-	public ViewClone(String url, String replacePatternString, String niewViewName) {
+	public ViewCloner(String url, String replacePatternString, String niewViewName) {
 		this.replacePatternString = replacePatternString;
 		this.url = url;
 		this.niewViewName = niewViewName;

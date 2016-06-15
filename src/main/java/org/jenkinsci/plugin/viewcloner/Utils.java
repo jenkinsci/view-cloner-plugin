@@ -1,4 +1,4 @@
-package org.jenkinsci.plugin.viewclone;
+package org.jenkinsci.plugin.viewcloner;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
