@@ -23,9 +23,9 @@
 	</licenses>
 
 	<scm>
-	  <connection>scm:git:ssh://github.com/jenkinsci/view-cloner.git</connection>
-	  <developerConnection>scm:git:ssh://git@github.com/jenkinsci/view-cloner.git</developerConnection>
-	  <url>https://github.com/jenkinsci/view-cloner</url>
+	  <connection>scm:git:ssh://github.com/jenkinsci/view-cloner-plugin.git</connection>
+	  <developerConnection>scm:git:ssh://git@github.com/jenkinsci/view-cloner-plugin.git</developerConnection>
+	  <url>https://github.com/jenkinsci/view-cloner-plugin</url>
 	</scm>
 
 	<properties>
