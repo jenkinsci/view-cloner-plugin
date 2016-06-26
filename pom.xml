@@ -10,7 +10,7 @@
 	</parent>
 
 	<artifactId>view-cloner</artifactId>
-	<version>1.1</version>
+	<version>1.2-SNAPSHOT</version>
 	<packaging>hpi</packaging>
 	<url>https://wiki.jenkins-ci.org/display/JENKINS/View+Cloner+Plugin</url>
 	
@@ -25,7 +25,7 @@
 	  <connection>scm:git:ssh://github.com/jenkinsci/view-cloner-plugin.git</connection>
 	  <developerConnection>scm:git:ssh://git@github.com/jenkinsci/view-cloner-plugin.git</developerConnection>
 	  <url>https://github.com/jenkinsci/view-cloner-plugin</url>
-	  <tag>view-cloner-1.1</tag>
+	  <tag>HEAD</tag>
   </scm>
 
 	<properties>
