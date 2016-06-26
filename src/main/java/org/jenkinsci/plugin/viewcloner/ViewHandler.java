@@ -14,11 +14,9 @@ import hudson.model.TaskListener;
 import jenkins.model.Jenkins;
 
 public class ViewHandler {
-	private Jenkins jenkins;
 	private PrintStream logger;
 	
 	ViewHandler(TaskListener listener) {
-		this.jenkins = Jenkins.getInstance();
 		this.logger = listener.getLogger();
 	}
 

@@ -82,7 +82,6 @@ public class Utils {
 	 *            authentication
 	 */
 	static void createView(String parentViewPath, String niewViewName, String viewConfig, String authStringEnc) {
-		int response = -1;
 		try {
 			String url = parentViewPath + "/createView?name=" + niewViewName;
 			URL obj = new URL(url);
@@ -97,7 +96,6 @@ public class Utils {
 			wr.writeBytes(viewConfig);
 			wr.flush();
 			wr.close();
-			response = conn.getResponseCode();
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
