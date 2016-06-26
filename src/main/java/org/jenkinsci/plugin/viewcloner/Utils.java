@@ -59,9 +59,9 @@ public class Utils {
 			conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestProperty("Authorization", "Basic " + authStringEnc);
 			Document xml = streamToDoc(conn.getInputStream());
-			int responce = conn.getResponseCode();	
-			if(responce != 200){
-				throw new RuntimeException("Unable to access " + configPath + "\nResponce code: " + responce);
+			int response = conn.getResponseCode();	
+			if(response != 200){
+				throw new RuntimeException("Unable to access " + configPath + "\nResponce code: " + response);
 			}
 			return xml;
 		} catch (IOException e) {
@@ -96,8 +96,12 @@ public class Utils {
 			wr.writeBytes(viewConfig);
 			wr.flush();
 			wr.close();
+			int response = conn.getResponseCode();
+			if(response != 200){
+				throw new RuntimeException("Unable to create a view \nResponce code: " + response);
+			}
 		} catch (IOException e) {
-			throw new RuntimeException(e);
+			throw new RuntimeException("Unable to create a view" + e);
 		}
 	}
 

@@ -1,5 +1,6 @@
 package org.jenkinsci.plugin.viewcloner;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -51,7 +52,7 @@ public class ViewCloner extends Builder implements SimpleBuildStep {
 	}
 
 	public String getPassword() {
-		return  Base64.encode(password.getBytes());
+		return  Base64.encode(password.getBytes(Charset.forName("UTF-8")));
 	}
 	
 	public String getUrl() {
@@ -64,7 +65,8 @@ public class ViewCloner extends Builder implements SimpleBuildStep {
 		// view that createItem will be called on has to be 1 higher than the view we are cloning
 		// so both old and new views would be on the same level
 		String urlToParentView = Utils.getUrlToTheParentView(url);
-		String authStringEnc = Base64.encode(new String(username + ":" + password).getBytes());
+		String authString = username + ":" + password;
+		String authStringEnc = Base64.encode(authString.getBytes("UTF-8"));
 		
 		ViewHandler viewHandler = new ViewHandler(listener);
 		JobHandler jobHandler = new JobHandler(listener);
