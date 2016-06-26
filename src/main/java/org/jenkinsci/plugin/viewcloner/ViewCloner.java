@@ -26,12 +26,16 @@ public class ViewCloner extends Builder implements SimpleBuildStep {
 	private String replacePatternString;
 	private String url;
 	private String niewViewName;
+	private String password;
+	private String username;
 	
 	@DataBoundConstructor
-	public ViewCloner(String url, String replacePatternString, String niewViewName) {
+	public ViewCloner(String url, String replacePatternString, String niewViewName, String password,String username) {
 		this.replacePatternString = replacePatternString;
 		this.url = url;
 		this.niewViewName = niewViewName;
+		this.username = username;
+		this.password = password;
 	}
 
 	public String getNiewViewName() {
@@ -42,18 +46,25 @@ public class ViewCloner extends Builder implements SimpleBuildStep {
 		return replacePatternString;
 	}
 
+	public String getUsername() {
+		return username;
+	}
+
+	public String getPassword() {
+		return  Base64.encode(password.getBytes());
+	}
+	
 	public String getUrl() {
 		return url;
 	}
-
+	
 	@Override
 	public void perform(Run<?, ?> run, FilePath path, Launcher launcher, TaskListener listener) throws InterruptedException, IOException {
 		url = Utils.removeEndSlash(url);
 		// view that createItem will be called on has to be 1 higher than the view we are cloning
 		// so both old and new views would be on the same level
 		String urlToParentView = Utils.getUrlToTheParentView(url);
-		
-		String authStringEnc = Base64.encode(new String(getDescriptor().getUsername() + ":" + getDescriptor().getPassword()).getBytes());
+		String authStringEnc = Base64.encode(new String(username + ":" + password).getBytes());
 		
 		ViewHandler viewHandler = new ViewHandler(listener);
 		JobHandler jobHandler = new JobHandler(listener);
@@ -77,20 +88,8 @@ public class ViewCloner extends Builder implements SimpleBuildStep {
 
 	@Extension
 	public static final class DescriptorImpl extends BuildStepDescriptor<Builder> {
-
-		private String password;
-		private String username;
-		
 		public DescriptorImpl() {
 			load();
-		}
-		
-		@Override
-		public boolean configure(StaplerRequest req, JSONObject formData) throws FormException {
-			username = formData.getString("username");
-			password = formData.getString("password");
-			save();
-			return super.configure(req, formData);
 		}
 		
 		@Override
@@ -101,14 +100,6 @@ public class ViewCloner extends Builder implements SimpleBuildStep {
 		@Override
 		public String getDisplayName() {
 			return "View clone";
-		}
-		
-		public String getUsername() {
-			return username;
-		}
-
-		public String getPassword() {
-			return password;
 		}
 		
 	}
